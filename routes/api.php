@@ -20,9 +20,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 //Articles route
-Route::get('articles', 'ArticleController@getAllArticles');
-Route::get('articles/{id}', 'ArticleController@getArticle');
 
-Route::post('articles', 'ArticleController@postArticle');
-Route::delete('articles/{id}', 'ArticleController@deleteArticle');
-Route::put('articles/{id}', 'ArticleController@updateArticle');
+Route::prefix('v1')->group(function () {
+    Route::get('articles', 'API\v1\ArticleConnection@getAllArticles');
+    Route::get('articles/{id}', 'API\v1\ArticleConnection@getArticle');
+    
+    Route::post('articles', 'API\v1\ArticleConnection@postArticle');
+    Route::delete('articles/{id}', 'API\v1\ArticleConnection@deleteArticle');
+    Route::put('articles/{id}', 'API\v1\ArticleConnection@updateArticle');
+});

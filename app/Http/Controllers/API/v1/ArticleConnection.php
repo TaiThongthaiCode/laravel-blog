@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API\v1;
 
 use Illuminate\Http\Request;
-use App\Article;
+use App\Models\Article;
+use App\Http\Controllers\Controller;
 
-class ArticleController extends Controller
+class ArticleConnection extends Controller
 {
-    public function getAllArticles(Request $request) {
-        
-        return Article::all();
 
+    public function getAllArticles(Request $request) {
+        return Article::all();
     }
 
     public function getArticle(Request $request, $id) {
