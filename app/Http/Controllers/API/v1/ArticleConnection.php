@@ -9,11 +9,13 @@ use App\Http\Controllers\Controller;
 class ArticleConnection extends Controller
 {
 
-    public function getAllArticles(Request $request) {
-        return Article::all();
+    public static function getAllArticles(Request $request) {
+        
+        return Article::orderBy('created_at', 'DESC')->get();
+        // return Article::all();
     }
 
-    public function getArticle(Request $request, $id) {
+    public static function getArticle(Request $request, $id) {
 
         if (Article::where('id', $id)->exists()) {
             return Article::where("id", $id)->get();
@@ -25,7 +27,7 @@ class ArticleConnection extends Controller
         }        
     }
 
-    public function postArticle(Request $request) {
+    public static function postArticle(Request $request) {
 
         //request->all gives the body
         $article = new Article;
@@ -39,7 +41,7 @@ class ArticleConnection extends Controller
 
     }
 
-    public function deleteArticle(Request $request, $id){
+    public static function deleteArticle(Request $request, $id){
 
         if (Article::where('id', $id)->exists()){
         
@@ -57,7 +59,7 @@ class ArticleConnection extends Controller
         }
     }
 
-    public function updateArticle(Request $request, $id){
+    public static function updateArticle(Request $request, $id){
 
         if (Article::where('id', $id)->exists()){
 
